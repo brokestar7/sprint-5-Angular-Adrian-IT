@@ -1,11 +1,20 @@
-document.write("Hola Mundo");
-const API_URL = 'https://icanhazdadjoke.com/' ;
 
-const HTMLResponse = document.getElementById("textoChiste");
+var myHeaders = new Headers();
+myHeaders.append("Accept", "application/json");
+
+var requestOptions: any = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+};
 
 
-// function generarChiste(){
+function generarChiste(){
+    
+    fetch("https://icanhazdadjoke.com/", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 
 
-
-// }
+}
