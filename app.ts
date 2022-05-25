@@ -1,20 +1,21 @@
 
-var myHeaders = new Headers();
-myHeaders.append("Accept", "application/json");
-
-var requestOptions: any = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-};
+var mostrarChiste = <HTMLInputElement>document.getElementById("textoChiste");
 
 
-function generarChiste(){
+async function generarChiste(){
     
-    fetch("https://icanhazdadjoke.com/", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+    const config = {
+        headers: {
+            Accept: "application/json",
+        },
 
+    };
 
+    const result = await fetch('https://icanhazdadjoke.com/', config);
+    const data = await result.json();
+
+    mostrarChiste.innerHTML = data.joke;
+    console.log(data.joke);
+    
+    
 }
