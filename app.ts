@@ -1,6 +1,6 @@
 
-var mostrarChiste = <HTMLInputElement>document.getElementById("textoChiste");
-
+const mostrarChiste = <HTMLInputElement>document.getElementById("textoChiste");
+var reportJokes = [];
 
 async function generarChiste(){
     
