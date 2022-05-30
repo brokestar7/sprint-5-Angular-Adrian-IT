@@ -38,10 +38,11 @@ var mostrarChiste = document.getElementById("textoChiste");
 var reportJokes = [];
 function generarChiste() {
     return __awaiter(this, void 0, void 0, function () {
-        var config, result, data;
+        var encontrarIndex, config, result, data;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    encontrarIndex = function (e) { return e.id == data.id; };
                     config = {
                         headers: {
                             Accept: "application/json"
@@ -55,8 +56,16 @@ function generarChiste() {
                     data = _a.sent();
                     mostrarChiste.innerHTML = data.joke;
                     console.log(data.joke);
+                    if (!reportJokes.includes(data.id)) { // si se introduce por primera vez
+                        // console.log("if reportJokes"+reportJokes);
+                        // console.log("id reportJokes"+reportJokes.findIndex(encontrarIndex));
+                        reportJokes.push(data);
+                        reportJokes[reportJokes.findIndex(encontrarIndex)].score = 0;
+                    }
                     return [2 /*return*/];
             }
         });
     });
+}
+function rateJokes(score) {
 }
