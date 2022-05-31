@@ -35,7 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var mostrarChiste = document.getElementById("textoChiste");
+var mostrarTiempo = document.getElementById("textoTiempo");
+var dataResult = 0;
 var reportJokes = [];
+var fecha = new Date();
+generarTiempo();
 function generarChiste() {
     return __awaiter(this, void 0, void 0, function () {
         var encontrarIndex, config, result, data;
@@ -54,6 +58,7 @@ function generarChiste() {
                     return [4 /*yield*/, result.json()];
                 case 2:
                     data = _a.sent();
+                    dataResult = data;
                     mostrarChiste.innerHTML = data.joke;
                     console.log(data.joke);
                     if (!reportJokes.includes(data.id)) { // si se introduce por primera vez
@@ -61,6 +66,10 @@ function generarChiste() {
                         // console.log("id reportJokes"+reportJokes.findIndex(encontrarIndex));
                         reportJokes.push(data);
                         reportJokes[reportJokes.findIndex(encontrarIndex)].score = 0;
+                        reportJokes[reportJokes.findIndex(encontrarIndex)].date = fecha.toISOString();
+                    }
+                    else {
+                        console.log("else :)" + data);
                     }
                     return [2 /*return*/];
             }
@@ -68,4 +77,49 @@ function generarChiste() {
     });
 }
 function rateJokes(score) {
+    if (dataResult == 0) {
+        alert("primero pulsa en següent acudit para tener un chiste que puntuar :)");
+    }
+    else {
+        var encontrarIndex = function (e) { return e.id == dataResult.id; };
+        reportJokes[reportJokes.findIndex(encontrarIndex)].date = fecha.toISOString();
+        reportJokes[reportJokes.findIndex(encontrarIndex)].score += score;
+        console.log(reportJokes[reportJokes.findIndex(encontrarIndex)]);
+        generarChiste();
+    }
+}
+function generarTiempo() {
+    return __awaiter(this, void 0, void 0, function () {
+        var result, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Barcelona?unitGroup=metric&key=2AHH3C2PWPEXSKXPHQBMBR3YA&contentType=json')];
+                case 1:
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
+                case 2:
+                    data = _a.sent();
+                    mostrarTiempo.innerHTML = "<img src='./imagenes/dom.png'style='width:25px' > Temp " + data.days[0].temp + " ºC";
+                    console.log(data);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function generarChisteCN() {
+    return __awaiter(this, void 0, void 0, function () {
+        var result, data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, fetch('https://api.chucknorris.io/jokes/random')];
+                case 1:
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
+                case 2:
+                    data = _a.sent();
+                    console.log(data.value);
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
