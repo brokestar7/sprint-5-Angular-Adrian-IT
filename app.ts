@@ -10,19 +10,28 @@ generarTiempo();
 
 async function generarChiste(){
     const encontrarIndex = (e:any) => e.id == data.id;
-    
+    var nunRandom = Math.floor(Math.random()*2);
+    let result:any;
+    let data:any;
+    console.log("numero random "+nunRandom);
+
     const config = {
         headers: {
             Accept: "application/json",
         },
         
     };
-
-    const result = await fetch('https://icanhazdadjoke.com/', config);
-    const data = await result.json();
+    if(nunRandom ==1){
+        result = await fetch('https://icanhazdadjoke.com/', config);
+        data = await result.json();
+        mostrarChiste.innerHTML = data.joke;
+    }
+    else{
+        result = await fetch('https://api.chucknorris.io/jokes/random');
+        data = await result.json();
+        mostrarChiste.innerHTML = data.value;
+    }
     dataResult = data;
-    mostrarChiste.innerHTML = data.joke;
-    console.log(data.joke);
     
     
     if(!reportJokes.includes(data.id)){ // si se introduce por primera vez
@@ -69,12 +78,12 @@ async function generarTiempo(){
 
 }
 
-async function generarChisteCN(){
+// async function generarChisteCN(){
 
-    const result = await fetch('https://api.chucknorris.io/jokes/random');
-    const data = await result.json();
+//     const result = await fetch('https://api.chucknorris.io/jokes/random');
+//     const data = await result.json();
 
-    console.log(data.value);
+//     console.log(data.value);
 
 
-}
+// }

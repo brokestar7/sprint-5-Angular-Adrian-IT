@@ -42,25 +42,37 @@ var fecha = new Date();
 generarTiempo();
 function generarChiste() {
     return __awaiter(this, void 0, void 0, function () {
-        var encontrarIndex, config, result, data;
+        var encontrarIndex, nunRandom, result, data, config;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     encontrarIndex = function (e) { return e.id == data.id; };
+                    nunRandom = Math.floor(Math.random() * 2);
+                    console.log("numero random " + nunRandom);
                     config = {
                         headers: {
                             Accept: "application/json"
                         }
                     };
+                    if (!(nunRandom == 1)) return [3 /*break*/, 3];
                     return [4 /*yield*/, fetch('https://icanhazdadjoke.com/', config)];
                 case 1:
                     result = _a.sent();
                     return [4 /*yield*/, result.json()];
                 case 2:
                     data = _a.sent();
-                    dataResult = data;
                     mostrarChiste.innerHTML = data.joke;
-                    console.log(data.joke);
+                    return [3 /*break*/, 6];
+                case 3: return [4 /*yield*/, fetch('https://api.chucknorris.io/jokes/random')];
+                case 4:
+                    result = _a.sent();
+                    return [4 /*yield*/, result.json()];
+                case 5:
+                    data = _a.sent();
+                    mostrarChiste.innerHTML = data.value;
+                    _a.label = 6;
+                case 6:
+                    dataResult = data;
                     if (!reportJokes.includes(data.id)) { // si se introduce por primera vez
                         // console.log("if reportJokes"+reportJokes);
                         // console.log("id reportJokes"+reportJokes.findIndex(encontrarIndex));
@@ -106,20 +118,8 @@ function generarTiempo() {
         });
     });
 }
-function generarChisteCN() {
-    return __awaiter(this, void 0, void 0, function () {
-        var result, data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch('https://api.chucknorris.io/jokes/random')];
-                case 1:
-                    result = _a.sent();
-                    return [4 /*yield*/, result.json()];
-                case 2:
-                    data = _a.sent();
-                    console.log(data.value);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
+// async function generarChisteCN(){
+//     const result = await fetch('https://api.chucknorris.io/jokes/random');
+//     const data = await result.json();
+//     console.log(data.value);
+// }
