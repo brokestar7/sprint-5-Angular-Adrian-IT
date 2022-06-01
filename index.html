@@ -7,25 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body class="bg-info">
-    
-    <div class="container">
+<body class="">
+    <!-- <div class="container"> -->
+        <div class=" p-4 mt-5  " style="background-image: url('./imagenes/blob.svg');background-position: center; background-size: 1000px; height: 900px; background-repeat: no-repeat;">
+            <div class="">
+                
+                <img class="w-25 position-absolute top-0 end-0 " src="./imagenes/blob(1).svg" alt="">
 
-        <div class="bg-white p-4 mt-5 rounded-3 shadow">
-            <p id="textoTiempo"></p>
-            <h1 class="text-center mt-5">Preparat per riure?</h1>
-            <div class="p-4">
-                <p id="textoChiste" class="text-center fs-5"><br></p>
+                <div class="container w-100">
+                    <p id="textoTiempo"></p>
+                    <div class="container w-50 py-4">
+                        <h1 class="text-center mb-2" style="margin-top: 250px ;">Preparat per riure?</h1>
+                        <p id="textoChiste" class="text-center fs-5"><br></p>
+
+                    </div>
+                    <img class="w-25 position-absolute bottom-0 start-0" src="./imagenes/blob(2).svg" alt="">
+                </div>
+                <div class="text-center">
+                    <button onclick="rateJokes(1)" class="btn fs-1">😧</button>
+                    <button onclick="rateJokes(2)" class="btn  fs-1">😐</button>
+                    <button onclick="rateJokes(3)" class="btn  fs-1">😈</button>
+                </div>
+                <div class="text-center mt-3">
+                    <button onclick="generarChiste()" class="btn btn-warning fs-4 border border-2 border-dark">Següent acudit</button>
             </div>
-            <div class="text-center">
-                <button onclick="rateJokes(1)" class="btn btn-secondary fs-1">😧</button>
-                <button onclick="rateJokes(2)" class="btn btn-secondary fs-1">😐</button>
-                <button onclick="rateJokes(3)" class="btn btn-secondary fs-1">😈</button>
-            </div>
-            <div class="text-center mt-3">
-                <button onclick="generarChiste()" class="btn btn-primary fs-4">Següent acudit</button>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </body>
 </html>
